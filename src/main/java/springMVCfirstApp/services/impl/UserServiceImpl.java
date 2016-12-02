@@ -57,7 +57,9 @@ public class UserServiceImpl implements UserService
 
     public User findUserPass(String name)
     {
-        return null;
+        List<User> users = userRepository.findUserByNameLike(name);
+        User user = users.get(0);
+        return user;
     }
     public UserServiceImpl() {
         //this.sessionFactory = sessionFactory;

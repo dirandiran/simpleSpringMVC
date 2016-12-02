@@ -10,6 +10,7 @@
 <head>
 </head>
 <body>
-HELLO!
+<h3>      User: ${findUser.name} </h3> <br />
+<h3>  Password: ${findUser.password}</h3> <br />
 </body>
 </html>

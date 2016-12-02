@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import springMVCfirstApp.Model.User;
 import springMVCfirstApp.services.api.UserService;
@@ -71,23 +72,33 @@ public class MainController {
 
         //записываем в атрибут userJSP (используется на странице *.jsp объект user
        // modelAndView.addObject("userJSP", user);
-        userService.saveUser(user);
-
-        List<User> users = userService.getAllUsers();
-
-        modelAndView.addObject("users", users);
-
+        if(user.getName()!="")
+        {
+            userService.saveUser(user);
+        }
+        else {
+            List<User> users = userService.getAllUsers();
+            modelAndView.addObject("users", users);
+        }
         return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
     }
     @RequestMapping(value = "/userPass", method = RequestMethod.GET)
-    public ModelAndView showUserPass(@ModelAttribute(value = "user") User user)
+    public ModelAndView showUserPass(@ModelAttribute(value = "name") String name)
     {
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("userPass");
+
+        User user = userService.findUserPass(name);
+
+        modelAndView.addObject("findUser",user);
+
        // List<User> users = userService.getAllUsers();
 
        /* user = userService.findUserPass(user.getName());
         modelAndView.addObject(user);*/
+
         return modelAndView;
+
     }
 }

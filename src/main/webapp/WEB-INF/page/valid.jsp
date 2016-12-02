@@ -6,13 +6,42 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
     <title>Valid Page</title>
+    <script>
+        /* $('#mainForm A').click(function()
+        {
+            // e.preventDefault();
+            var destenation = $(this).attr('href');
+            var userName =  $(this).attr('id');
+            var input = $("input");
+            input.setAttribute("value",userName);
+            $('#mainForm').attr('action', destenation);
+            $('#mainForm').submit();
+        }); */
+    </script>
+    <!--  <script type="text/javascript">
+        $(document).ready(function (){
+            $('#${user.name}').click(function () {
+
+                var name = $("#${user.name}");
+                var input = $("#userName");
+                input.setAttribute("value", name);
+                $("#mainForm").submit();
+                //input.setAttribute("value", name);
+                  /*  $.ajax({
+                        type: 'POST',
+                        url: 'MainController',
+                        success: function (name) {
+                            input.setAttribute("value", name);
+                            $("#mainForm").submit();
+                        }
+                    });*/
+
+            });
+        });
+    </script>-->
 </head>
 <body>
-<!--Введенное имя: ${userJSP.name};
-<br>
-Введенный пароль: ${userJSP.password};
-<br>-->
-<form id="mainForm" method="get">
+<!-- <form id="mainForm" method="post" action="userPass">-->
     <table>
         <thead align="center" >
             <tr>
@@ -25,25 +54,13 @@
              <c:forEach items="${ users }" var="user">
                  <tr>
                      <td> ${ user.id } </td>
-                     <td> <a href="userPass" id="${user.name}"> ${ user.name } </a> </td>
+                     <td> <a href="userPass?name=${user.name}" id="${user.name}"> ${ user.name } </a> </td>
                      <!--<td> ${ user.password }</td>-->
                  </tr>
              </c:forEach>
         </tbody>
     </table>
-    <input name="userName">
-</form>
-<script>
-    $('#mainForm A').onclick(function()
-    {
-      // e.preventDefault();
-        var destenation = $(this).attr('href');
-        var userName =  $(this).attr('id');
-        var input = $("input");
-        input.setAttribute("value",userName);
-        $('#mainForm').attr('action', destenation);
-        $('#mainForm').submit();
-    });
-</script>
+  <!--  <input type="hidden" name="name" id="userName">
+</form>-->
 </body>
 </html>
